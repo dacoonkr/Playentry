@@ -33,44 +33,30 @@ namespace Playentry
     {
         const string Domain = "https://playentry.org";
 
-        public static List<ProjectThumnail> getStaffPicks()
+        public static List<ProjectThumnail> getStaffPicks(int limit = 3)
         {
-            string response = Http.RequestGet(Domain + "/api/rankProject?type=staff&limit=3");
+            string response = Http.RequestGet(Domain + $"/api/rankProject?type=staff&limit={limit}");
 
             List<ProjectThumnail> staffPicks = new List<ProjectThumnail>();
 
             JObject json = JObject.Parse($"{{\"value\":{response}}}");
-
-            staffPicks.Add(new ProjectThumnail(json["value"][0]));
-            staffPicks.Add(new ProjectThumnail(json["value"][1]));
-            staffPicks.Add(new ProjectThumnail(json["value"][2]));
+            for (int i = 0; i < limit; i++)
+                staffPicks.Add(new ProjectThumnail(json["value"][i]));
 
             return staffPicks;
         }
-    }
 
-    public class ProjectThumnail
-    {
-        public string ProjectId, ProjectName;
-
-        public int Visit, Comment, Like;
-
-        public string UserID, UserName;
-        public string ThumbnailUrl;
-
-        internal ProjectThumnail(JToken json)
+        public static List<ProjectThumnail> getBestProjects(int limit = 9)
         {
-            ProjectId = json["project"]["_id"].ToString();
-            ProjectName = json["project"]["name"].ToString();
+            string response = Http.RequestGet(Domain + $"/api/rankProject?type=best&limit={limit}");
 
-            Visit = int.Parse(json["project"]["visit"].ToString());
-            Like = int.Parse(json["project"]["likeCnt"].ToString());
-            Comment = int.Parse(json["project"]["comment"].ToString());
+            List<ProjectThumnail> bestProjects = new List<ProjectThumnail>();
 
-            UserID = json["project"]["user"]["_id"].ToString();
-            UserName = json["project"]["user"]["username"].ToString();
+            JObject json = JObject.Parse($"{{\"value\":{response}}}");
+            for (int i = 0; i < limit; i++)
+                bestProjects.Add(new ProjectThumnail(json["value"][i]));
 
-            ThumbnailUrl = $"https://playentry.org{json["project"]["thumb"]}";
+            return bestProjects;
         }
     }
 }
