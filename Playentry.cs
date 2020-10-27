@@ -33,28 +33,28 @@ namespace Playentry
     {
         const string Domain = "https://playentry.org";
 
-        public static List<ProjectThumnail> getStaffPicks(int limit = 3)
+        public static List<ProjectThumbnail> getStaffPicks(int limit = 3)
         {
             string response = Http.RequestGet(Domain + $"/api/rankProject?type=staff&limit={limit}");
 
-            List<ProjectThumnail> staffPicks = new List<ProjectThumnail>();
+            List<ProjectThumbnail> staffPicks = new List<ProjectThumbnail>();
 
             JObject json = JObject.Parse($"{{\"value\":{response}}}");
             for (int i = 0; i < limit; i++)
-                staffPicks.Add(new ProjectThumnail(json["value"][i]));
+                staffPicks.Add(new ProjectThumbnail(json["value"][i]));
 
             return staffPicks;
         }
 
-        public static List<ProjectThumnail> getBestProjects(int limit = 9)
+        public static List<ProjectThumbnail> getBestProjects(int limit = 9)
         {
             string response = Http.RequestGet(Domain + $"/api/rankProject?type=best&limit={limit}");
 
-            List<ProjectThumnail> bestProjects = new List<ProjectThumnail>();
+            List<ProjectThumbnail> bestProjects = new List<ProjectThumbnail>();
 
             JObject json = JObject.Parse($"{{\"value\":{response}}}");
             for (int i = 0; i < limit; i++)
-                bestProjects.Add(new ProjectThumnail(json["value"][i]));
+                bestProjects.Add(new ProjectThumbnail(json["value"][i]));
 
             return bestProjects;
         }

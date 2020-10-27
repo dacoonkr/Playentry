@@ -1,20 +1,20 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Playentry
 {
-    public class ProjectThumnail
+    public class ProjectThumbnail
     {
-        public string ProjectId, ProjectName;
+        public readonly string ProjectId, ProjectName;
+        public readonly string UserID, UserName;
+        public readonly int Visit, Comment, Like;
 
-        public int Visit, Comment, Like;
+        private string Thumbnail;
 
-        public string UserID, UserName;
-        public string ThumbnailUrl;
-
-        internal ProjectThumnail(JToken json)
+        internal ProjectThumbnail(JToken json)
         {
             ProjectId = json["project"]["_id"].ToString();
             ProjectName = json["project"]["name"].ToString();
@@ -26,7 +26,17 @@ namespace Playentry
             UserID = json["project"]["user"]["_id"].ToString();
             UserName = json["project"]["user"]["username"].ToString();
 
-            ThumbnailUrl = $"https://playentry.org{json["project"]["thumb"]}";
+            Thumbnail = json["project"]["thumb"].ToString();
+        }
+
+        public string GetThumbnailURL()
+        {
+            return $"https://playentry.org/{Thumbnail}";
+        }
+
+        public Project GetProject()
+        {
+            return new Project(ProjectId);
         }
     }
 }
