@@ -13,7 +13,7 @@ namespace Playentry
         public readonly string ProjectId, ProjectName, ProjectDescription;
         public readonly string UserID, UserName;
         public readonly int Visit, Comment, Like;
-        public readonly int ChildCnt;
+        public readonly int ChildrenCount;
 
         private string Thumbnail;
 
@@ -38,22 +38,31 @@ namespace Playentry
             Visit = int.Parse(json["visit"].ToString());
             Like = int.Parse(json["likeCnt"].ToString());
             Comment = int.Parse(json["comment"].ToString());
-            ChildCnt = int.Parse(json["childCnt"].ToString());
+            ChildrenCount = int.Parse(json["childCnt"].ToString());
 
             UserID = json["user"]["_id"].ToString();
             UserName = json["user"]["username"].ToString();
 
             Thumbnail = json["thumb"].ToString();
-
         }
 
         public string GetThumbnailURL()
         {
             return $"https://playentry.org/{Thumbnail}";
         }
+
+        public ProjectLikesGroup GetProjectLikesGroup()
+        {
+            return new ProjectLikesGroup(ProjectId, Like);
+        }
+
+        public ProjectFavoritesGroup GetProjectFavoritesGroup()
+        {
+            return new ProjectFavoritesGroup(ProjectId);
+        }
     }
 
-    public enum ProjectCategorySet : int
+    public enum ProjectCategorySet : uint
     {
         Game = 0,
         Animation = 1,

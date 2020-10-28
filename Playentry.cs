@@ -33,7 +33,7 @@ namespace Playentry
     {
         const string Domain = "https://playentry.org";
 
-        public static List<ProjectThumbnail> getStaffPicks(int limit = 3)
+        public static List<ProjectThumbnail> GetStaffPicks(int limit = 3)
         {
             string response = Http.RequestGet(Domain + $"/api/rankProject?type=staff&limit={limit}");
 
@@ -46,7 +46,7 @@ namespace Playentry
             return staffPicks;
         }
 
-        public static List<ProjectThumbnail> getBestProjects(int limit = 9)
+        public static List<ProjectThumbnail> GetBestProjects(int limit = 9)
         {
             string response = Http.RequestGet(Domain + $"/api/rankProject?type=best&limit={limit}");
 
