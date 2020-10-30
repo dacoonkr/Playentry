@@ -12,16 +12,21 @@ namespace Playentry
 
         public readonly string ProjectId, ProjectName, ProjectDescription;
         public readonly string UserID, UserName;
-        public readonly int Visit, Comment, Like;
+        public readonly int Visit, Comment, Like, Favorite;
         public readonly int ChildrenCount;
+
+        public readonly DateTime CreatedUTC, LastEditedUTC;
 
         private string Thumbnail;
 
         internal Project(string Id)
         {
-            string response = Http.RequestGet($"https://playentry.org/api/project/{Id}");
-
+            string response = Http.RequestGet($"https://playentry.org/api/project/favorites/{Id}?&targetSubject=project&targetType=individual");
             JObject json = JObject.Parse(response);
+            Favorite = int.Parse(json["total"].ToString());
+
+            response = Http.RequestGet($"https://playentry.org/api/project/{Id}");
+            json = JObject.Parse(response);
 
             ProjectId = json["_id"].ToString();
             ProjectName = json["name"].ToString();
@@ -44,6 +49,9 @@ namespace Playentry
             UserName = json["user"]["username"].ToString();
 
             Thumbnail = json["thumb"].ToString();
+
+            CreatedUTC = DateTime.Parse(json["created"].ToString());
+            LastEditedUTC = DateTime.Parse(json["updated"].ToString());
         }
 
         public string GetThumbnailURL()
@@ -59,6 +67,11 @@ namespace Playentry
         public ProjectFavoritesGroup GetProjectFavoritesGroup()
         {
             return new ProjectFavoritesGroup(ProjectId);
+        }
+
+        public ProjectCommentGroup GetProjectCommentsGroup()
+        {
+            return new ProjectCommentGroup(ProjectId);
         }
     }
 

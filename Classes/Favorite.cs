@@ -35,6 +35,8 @@ namespace Playentry
         public readonly string UserID, UserName;
         public readonly string ProjectID;
 
+        public readonly DateTime CreatedUTC;
+
         internal ProjectFavorite(string _ProjectID, JToken json)
         {
             ProjectID = _ProjectID;
@@ -42,6 +44,8 @@ namespace Playentry
 
             UserName = json["user"]["username"].ToString();
             UserID = json["user"]["_id"].ToString();
+
+            CreatedUTC = DateTime.Parse(json["created"].ToString());
         }
     }
 }
