@@ -59,9 +59,9 @@ namespace Playentry
             return bestProjects;
         }
 
-        public static Project GetProjectByID(string _ProjectID)
+        public static Project GetProjectByID(string ProjectID)
         {
-            return new Project(_ProjectID);
+            return new Project(ProjectID);
         }
     }
 }
