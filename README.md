@@ -50,6 +50,91 @@ using Playentry;
 >
 >   >   List\<ProjectThumbnail>
 
+## class ProjectThumbnail
+
+### GetThumbnailURL()
+
+>   Get project's thumbnail image URL.
+>
+>   **Returns**
+>
+>   >   URL of project's thumbnail image.
+>
+>   **Return Type**
+>
+>   >string
+
+### GetProject()
+
+>   Get detail project class from thumbnail.
+>
+>   **Returns**
+>
+>   >   Detail project class from thumbnail.
+>
+>   **Return Type**
+>
+>   >   Project
+
+### ProjectId
+
+>   The project's unique ID.
+>
+>   **Type**
+>
+>   >   string
+
+### ProjectName
+
+>   The project's title.
+>
+>   **Type**
+>
+>   >   string
+
+### UserID
+
+>   The project's author's unique ID.
+>
+>   **Type**
+>
+>   >   string
+
+### UserName
+
+>   The project's author's unique name.
+>
+>   **Type**
+>
+>   >   string
+
+
+### Visit
+
+>   The views of project.
+>
+>   **Type**
+>
+>   >   int
+
+
+### Like
+
+>   The number of likes for project.
+>
+>   **Type**
+>
+>   >   int
+
+
+### Comment
+
+>   The number of comments on project.
+>
+>   **Type**
+>
+>   >   int
+
 ## class Project
 
 ### GetThumbnailURL()
@@ -192,7 +277,7 @@ using Playentry;
 >
 >   >   int
 
-### CreatedUTC
+### Created
 
 >   `This time is based on UTC.`
 >
@@ -202,7 +287,7 @@ using Playentry;
 >
 >   >   DateTime
 
-### LastEditedUTC
+### LastEdited
 
 >   `This time is based on UTC.`
 >
@@ -212,7 +297,191 @@ using Playentry;
 >
 >   >   DateTime
 
+## class ProjectLikesGroup
+
+### ProjectID
+
+>   The unique ID of target project.
+>
+>   **Type**
+>
+>   >    string
+
+### Count
+
+>   The number of likes.
+>
+>   **Type**
+>
+>   >   int
+
+### List
+
+>   The list of likes.
+>
+>   **Type**
+>
+>   >   List\<ProjectLike>
+
+## class ProjectLike
+
+### LikeID
+
+>   The unique ID of likes.
+>
+>   **Type**
+>
+>   >   string
+
+### UserID
+
+>   The likes' user's unique ID.
+>
+>   **Type**
+>
+>   >   string
+
+### UserName
+
+>   The likes' user's unique name.
+>
+>   **Type**
+>
+>   >   string
+
+### ProjectId
+
+>   The target project's unique ID.
+>
+>   **Type**
+>
+>   >   string
 
 
+## class ProjectFavoritesGroup
 
+### ProjectID
 
+>   The unique ID of target project.
+>
+>   **Type**
+>
+>   >    string
+
+### Count
+
+>   The number of favorites.
+>
+>   **Type**
+>
+>   >   int
+
+### List
+
+>   The list of favorites.
+>
+>   **Type**
+>
+>   >   List\<ProjectFavorite>
+
+## class ProjectFavorite
+
+### LikeID
+
+>   The unique ID of favorites.
+>
+>   **Type**
+>
+>   >   string
+
+### UserID
+
+>   The favorites' user's unique ID.
+>
+>   **Type**
+>
+>   >   string
+
+### UserName
+
+>   The favorites' user's unique name.
+>
+>   **Type**
+>
+>   >   string
+
+### ProjectId
+
+>   The target project's unique ID.
+>
+>   **Type**
+>
+>   >   string
+
+## class ProjectCommentsGroup
+
+### ProjectID
+
+>   The unique ID of target project.
+>
+>   **Type**
+>
+>   >    string
+
+### Count
+
+>   The number of comments.
+>
+>   **Type**
+>
+>   >   int
+
+### List
+
+>   The list of comments.
+>
+>   **Type**
+>
+>   >   List\<ProjectComment>
+
+## class ProjectComment
+
+### LikeID
+
+>   The unique ID of comment.
+>
+>   **Type**
+>
+>   >   string
+
+### UserID
+
+>   The comment's user's unique ID.
+>
+>   **Type**
+>
+>   >   string
+
+### UserName
+
+>   The comment's user's unique name.
+>
+>   **Type**
+>
+>   >   string
+
+### ProjectId
+
+>   The target project's unique ID.
+>
+>   **Type**
+>
+>   >   string
+
+### Content
+
+>   The content of comment.
+>
+>   **Type**
+>
+>   >   string

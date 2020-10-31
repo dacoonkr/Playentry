@@ -15,7 +15,7 @@ namespace Playentry
         public readonly int Visit, Comment, Like, Favorite;
         public readonly int ChildrenCount;
 
-        public readonly DateTime CreatedUTC, LastEditedUTC;
+        public readonly DateTime Created, LastEdited;
 
         private string Thumbnail;
 
@@ -50,8 +50,8 @@ namespace Playentry
 
             Thumbnail = json["thumb"].ToString();
 
-            CreatedUTC = DateTime.Parse(json["created"].ToString());
-            LastEditedUTC = DateTime.Parse(json["updated"].ToString());
+            Created = DateTime.Parse(json["created"].ToString());
+            LastEdited = DateTime.Parse(json["updated"].ToString());
         }
 
         public string GetThumbnailURL()
