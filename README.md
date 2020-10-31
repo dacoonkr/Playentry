@@ -2,11 +2,11 @@
 
 #### Unofficial API Wrapper for .NET
 
-It's available on NuGet! <button onclick="https://www.nuget.org/packages/Playentry/">Go to NuGet Package</button>
+It's available on NuGet! [Go to NuGet Package](https://www.nuget.org/packages/Playentry)
 
 #### What is Playentry?
 
-Playentry is a software training platform developed so that anyone can take software training for free. <button onclick="https://playentry.org">Go to Playentry</button>
+Playentry is a software training platform developed so that anyone can take software training for free. [Go to Playentry](https://playentry.org)
 
 #### Usage
 
