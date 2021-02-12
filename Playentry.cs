@@ -18,12 +18,10 @@ namespace Playentry
             using (HttpWebResponse resp = (HttpWebResponse)request.GetResponse())
             {
                 HttpStatusCode status = resp.StatusCode;
-
+                
                 Stream respStream = resp.GetResponseStream();
-                using (StreamReader sr = new StreamReader(respStream))
-                {
-                    responseText = sr.ReadToEnd();
-                }
+                
+                responseText = new StreamReader(respStream).ReadToEnd();
             }
             return responseText;
         }
@@ -62,6 +60,11 @@ namespace Playentry
         public static Project GetProjectByID(string ProjectID)
         {
             return new Project(ProjectID);
+        }
+
+        public static User GetUserByUsername(string Username)
+        {
+            return new User(Username);
         }
     }
 }
