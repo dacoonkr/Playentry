@@ -37,5 +37,20 @@ namespace Playentry
             IsBlocked = json["isBlocked"].ToString() == "true";
             IsEmailAuthed = json["isEmailAuth"].ToString() == "true";
         }
+
+        public List<ProjectThumbnail> GetAllProjects()
+        {
+            List<ProjectThumbnail> projects = new List<ProjectThumbnail>();
+
+            string response = Http.RequestGet($"https://playentry.org/api/project/find?option=list&sort=updated&user={UserID}");
+
+            JObject json = JObject.Parse(response);
+            int count = int.Parse(json["count"].ToString());
+
+            for (int i = 0; i < count; i++)
+                projects.Add(new ProjectThumbnail(json["data"][i]));
+
+            return projects;
+        }
     }
 }

@@ -18,9 +18,9 @@ namespace Playentry
             using (HttpWebResponse resp = (HttpWebResponse)request.GetResponse())
             {
                 HttpStatusCode status = resp.StatusCode;
-                
+
                 Stream respStream = resp.GetResponseStream();
-                
+
                 responseText = new StreamReader(respStream).ReadToEnd();
             }
             return responseText;
