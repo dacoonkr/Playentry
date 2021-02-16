@@ -42,13 +42,13 @@ namespace Playentry
         {
             List<ProjectThumbnail> projects = new List<ProjectThumbnail>();
 
-            string response = Http.RequestGet($"https://playentry.org/api/project/find?option=list&sort=updated&user={UserID}");
+            string response = Http.RequestGet($"https://playentry.org/api/project/find?option=list&sort=updated&rows=10000&user={UserID}");
 
             JObject json = JObject.Parse(response);
             int count = int.Parse(json["count"].ToString());
 
             for (int i = 0; i < count; i++)
-                projects.Add(new ProjectThumbnail(json["data"][i]));
+                projects.Add(new ProjectThumbnail(JObject.Parse($"{{\"project\":{json["data"][i]}}}")));
 
             return projects;
         }

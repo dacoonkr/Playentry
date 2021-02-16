@@ -30,12 +30,16 @@ namespace Playentry
 
             ProjectId = json["_id"].ToString();
             ProjectName = json["name"].ToString();
-            ProjectDescription = json["description"].ToString();
+
+            if (json.ContainsKey("description"))
+                ProjectDescription = json["description"].ToString();
+            else ProjectDescription = string.Empty;
+
             ProjectCategory = new Dictionary<string, ProjectCategorySet>
             {
                 ["게임"] = ProjectCategorySet.Game,
                 ["애니메이션"] = ProjectCategorySet.Animation,
-                ["미디어 아트"] = ProjectCategorySet.MediaArt,
+                ["미디어아트"] = ProjectCategorySet.MediaArt,
                 ["피지컬"] = ProjectCategorySet.Physical,
                 ["기타"] = ProjectCategorySet.Other
             }[json["category"].ToString()];
